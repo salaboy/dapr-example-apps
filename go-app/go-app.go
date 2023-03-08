@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	STATE_STORE_NAME = "my-db-dapr-statestore"
+	STATE_STORE_NAME = ""
 	daprClient       dapr.Client
 )
 
@@ -21,6 +21,11 @@ type MyValues struct {
 }
 
 func readValues(w http.ResponseWriter, r *http.Request) {
+
+	STATE_STORE_NAME := os.Getenv("STATE_STORE_NAME")
+	if STATE_STORE_NAME == "" {
+		STATE_STORE_NAME = "my-dapr-db-statestore"
+	}
 
 	ctx := context.Background()
 

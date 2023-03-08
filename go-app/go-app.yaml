@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: go-app-deployment
-  namespace: my-db-dapr
   labels:
     app.kubernetes.io/name: go-app
 spec:
@@ -22,6 +21,9 @@ spec:
       containers:
       - name: go-app
         image: ko://github.com/salaboy/dapr/go-app
+        env: 
+        - name: STATE_STORE_NAME
+          value: my-dapr-db-statestore
         ports: 
         - containerPort: 8080
         livenessProbe:
@@ -38,7 +40,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: my-db-dapr
   name: go-app-service
 spec:
   selector:

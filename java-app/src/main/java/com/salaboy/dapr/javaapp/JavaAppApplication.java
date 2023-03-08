@@ -1,5 +1,6 @@
 package com.salaboy.dapr.javaapp;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +24,8 @@ public class JavaAppApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(JavaAppApplication.class);
 
-	private static final String STATE_STORE_NAME = "my-db-dapr-statestore";
+	@Value("{STATE_STORE_NAME:my-dapr-db-statestore}")
+	private String STATE_STORE_NAME = "";
 
 	private DaprClient client = new DaprClientBuilder().build();
 
