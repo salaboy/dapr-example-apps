@@ -24,7 +24,7 @@ public class JavaAppApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(JavaAppApplication.class);
 
-	@Value("{STATE_STORE_NAME:my-dapr-db-statestore}")
+	@Value("${STATE_STORE_NAME:my-dapr-db-statestore}")
 	private String STATE_STORE_NAME = "";
 
 	private DaprClient client = new DaprClientBuilder().build();
